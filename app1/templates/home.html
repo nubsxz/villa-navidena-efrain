@@ -1,0 +1,30 @@
+{% extends 'extras/navegacion.html' %}
+{% load static %}
+
+{% block pag %}
+    <!-- Título Festivo Principal Personalizado -->
+    <h1>🎄 Villa Navideña Efrain 🎁</h1>
+    
+    <!-- Nueva Descripción del Negocio -->
+    <p style="font-size: 1.2rem; font-weight: 500; color: var(--color-texto); max-width: 750px; margin: 20px auto;">
+        ¡Bienvenido a tu distribuidora oficial de felicidad! En esta temporada nos especializamos en la venta de los mejores artículos para decorar tu hogar: esferas artesanales, árboles premium, luces LED de alta tecnología y nacimientos detallados. ¡Hacemos que la magia de las fiestas cobre vida!
+    </p>
+
+    <!-- Tu Imagen Navideña Local Cargada Correctamente -->
+    <div style="margin: 30px auto; max-width: 550px;">
+        <img src="{% static 'app1/navideño.jpg' %}" 
+             alt="Árbol de Navidad Iluminado" 
+             style="width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border: 3px solid var(--color-dorado);">
+    </div>
+
+    <!-- Mensaje secundario emotivo -->
+    <p style="font-style: italic; color: #666; margin-bottom: 30px;">
+        "La Navidad no se trata de abrir regalos, sino de abrir nuestros corazones."
+    </p>
+
+    <!-- Accesos rápidos estilo botones navideños -->
+    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; margin-bottom: 40px;">
+        <a href="{% url 'stores' %}" class="btn" style="text-decoration: none;">🏬 Ver Sucursales</a>
+        <a href="{% url 'products' %}" class="btn" style="text-decoration: none; background-color: var(--color-verde-pino); border-color: var(--color-verde-pino);">🎁 Catálogo de Artículos</a>
+    </div>
+{% endblock %}

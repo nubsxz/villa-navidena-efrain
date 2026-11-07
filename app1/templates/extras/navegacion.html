@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?v=2">
+    <link rel="shortcut icon" href=" {% static 'icono.png' %}" type="image.png">
+</head>
+<body>
+    <nav class="navigation">
+    <ul>
+        <li>
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'info' %}">Información</a>
+        </li>
+        <li>
+            <a href="{% url 'stores' %}">Stores</a>
+        </li>
+        <li>
+            <a href="{% url 'products' %}">Products</a>
+        </li>
+        <li>
+            <a href="{% url 'create_store' %}">Create Store</a>
+        </li>
+        <li>
+            <a href="{% url 'create_product' %}">Create Products</a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}">Contact</a>
+        </li>
+    </ul>
+</nav>
+<main class="all">
+    {% block pag %}
+    {% endblock %}
+</main>
+</body>
+</html>

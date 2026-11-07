@@ -1,0 +1,186 @@
+/* ---------- 1. VARIABLES CON COLORES NAVIDEÑOS ---------- */
+:root {
+    --color-fondo: #f4f7f6;          /* Blanco nieve muy sutil para el fondo */
+    --color-rojo-navidad: #c41e3a;   /* Rojo clásico de Navidad para la barra principal */
+    --color-verde-pino: #1b4d3e;     /* Verde pino elegante para menús y detalles */
+    --color-dorado: #d4af37;         /* Dorado brillante para destacar elementos */
+    --color-texto: #2c3e50;          /* Gris oscuro elegante para una lectura cómoda */
+    --color-blanco-puro: #ffffff;    /* Blanco para los textos del menú */
+}
+
+/* ---------- 2. BASE ---------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    line-height: 1.6;
+}
+
+/* Foco visible para quien navega con teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--color-verde-pino);
+    outline-offset: 3px;
+}
+
+/* ---------- 3. CONTENEDOR GENERAL ---------- */
+.all {
+    max-width: 1250px;
+    margin: auto;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* ---------- 4. BARRA DE NAVEGACIÓN NAVIDEÑA ---------- */
+.navigation {
+    background: linear-gradient(90deg, var(--color-rojo-navidad), #a0122a); /* Degradado rojo festivo */
+    border-bottom: 4px solid var(--color-dorado); /* Línea divisoria dorada */
+    padding: 15px 0;
+    max-width: 1250px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navigation ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.navigation ul li {
+    list-style: none;
+}
+
+.navigation ul li a {
+    color: var(--color-blanco-puro); /* Texto blanco para resaltar en el rojo */
+    text-decoration: none;
+    font-size: x-large;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 8px 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por los botones del menú */
+.navigation ul li a:hover {
+    color: var(--color-dorado); /* Letras doradas */
+    background: var(--color-verde-pino); /* Fondo verde pino */
+}
+
+/* ---------- 5. SELECTOR / MENÚ SECUNDARIO ---------- */
+.select {
+    background: linear-gradient(145deg, var(--color-blanco-puro), #eef2f1);
+    border: 1px solid #dddddd;
+    border-left: 5px solid var(--color-rojo-navidad); /* Detalle lateral rojo */
+    padding: 12px 0;
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.select a {
+    color: var(--color-texto);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.select a:hover {
+    color: var(--color-rojo-navidad);
+}
+
+/* ---------- 6. ZONA DE TEXTO / FORMULARIO ---------- */
+.textinp {
+    background: var(--color-blanco-puro);
+    border: 1px solid #e0e0e0;
+    border-top: 4px solid var(--color-verde-pino); /* Borde superior verde */
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.textinp input,
+.textinp textarea {
+    background: #ffffff;
+    color: var(--color-texto);
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.textinp input:focus,
+.textinp textarea:focus {
+    border-color: var(--color-rojo-navidad);
+    outline: none;
+}
+
+/* ---------- 7. BOTÓN NAVIDEÑO ---------- */
+.btn {
+    background: var(--color-rojo-navidad);
+    color: var(--color-blanco-puro);
+    border: 2px solid var(--color-rojo-navidad);
+    border-radius: 4px;
+    padding: 10px 24px;
+    font-size: x-large;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: var(--color-verde-pino);
+    border-color: var(--color-verde-pino);
+    color: var(--color-dorado);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* ---------- 8. TÍTULO Y TEXTO ---------- */
+h1 {
+    color: var(--color-rojo-navidad); /* Títulos principales en rojo festivo */
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 32px 0 20px;
+}
+
+p {
+    max-width: 800px;
+    margin: 20px auto;
+    font-size: 1.1rem;
+    color: #555555;
+}
+
+/* ---------- 9. PANTALLAS PEQUEÑAS ---------- */
+@media (max-width: 700px) {
+    .navigation ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+/* Respeta a quien prefiere menos animación */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
