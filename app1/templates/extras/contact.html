@@ -1,0 +1,18 @@
+{% extends 'extras/navegacion.html' %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 40px auto; padding: 20px; background-color: #ffffff; border: 3px solid #d4af37; border-radius: 10px; font-family: sans-serif; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <h1 style="color: #c41e3a; margin-bottom: 10px;">🎄 Contacta a Villa Navideña 🎁</h1>
+    <p style="color: #1b4d3e; font-size: 1.1em; margin-bottom: 30px;">¡Déjanos un mensaje y te ayudaremos a llevar la magia de las fiestas a tu hogar!</p>
+
+    <form method="POST" style="text-align: left; background: #fdfbf7; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">
+        {% csrf_token %}
+        <div style="margin-bottom: 15px;">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" style="width: 100%; padding: 12px; background-color: #c41e3a; color: white; border: none; border-radius: 5px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+            ✨ Enviar Mensaje Navideño
+        </button>
+    </form>
+</div>
+{% endblock %}
