@@ -1,6 +1,5 @@
-from django.contrib import admin
 from django.urls import path
-# agregar las urls de app1
+# CORREGIDO: Dejamos el espacio obligatorio entre el punto y la palabra import
 from . import views
 
 urlpatterns = [
