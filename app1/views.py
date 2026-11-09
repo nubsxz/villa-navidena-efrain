@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Store, Product  
 from .forms import newstoreform, newproductform, newcontactform
-from django.core.mail import send_mail  # CORREGIDO: Usar el enviador oficial de Django
+from django.core.mail import send_mail
 
 def home(request):
     return render(request, "home.html") 
@@ -66,35 +66,15 @@ def contact(request):
         if form.is_valid():
             try:
                 destinatario = form.cleaned_data['email']
+                asunto = "Contacto - Villa Navideña Efrain 🎄"
+                mensaje = "🎄 ¡Hola! Gracias por contactar a Villa Navideña Efrain. 🎁\n\nHemos recibido tu solicitud con éxito.\n"
                 
-                # Asunto del correo
-                asunto = "Catálogo de Artículos - Villa Navideña Efrain 🎄"
-
-                # Construcción del mensaje navideño limpio
-                mensaje = "🎄 ¡Hola! Gracias por contactar a Villa Navideña Efrain. 🎁\n\n"
-                mensaje += "Aquí tienes la lista y precios de nuestros hermosos artículos de temporada disponibles:\n"
-                mensaje += "---------------------------------------------------------------------------------\n"
-                for i in Product.objects.all():  
-                    mensaje += f"✨ {str(i.name)} - ${str(i.price)}\n"
-                mensaje += "---------------------------------------------------------------------------------\n"
-                mensaje += "¡Hacemos que la magia de las fiestas cobre vida en tu hogar! 🎄✨\n"
-
-                # CORREGIDO: Enviar usando el método seguro y nativo de Django
-                send_mail(
-                    asunto,
-                    mensaje,
-                    None,  # Usa automáticamente el DEFAULT_FROM_EMAIL de settings.py
-                    [destinatario],
-                    fail_silently=False,
-                )
+                # Simulación veloz integrada
+                send_mail(asunto, mensaje, None, [destinatario], fail_silently=False)
 
                 return redirect('home')
-
             except Exception as e:
-                return render(request, 'extras/contact.html', {
-                    'form': form,
-                    'error': f'Error al enviar el correo: {str(e)}'
-                })
+                return render(request, 'extras/contact.html', {'form': form, 'error': f'Error: {str(e)}'})
         else:
             return render(request, 'extras/contact.html', {'form': form})
 
