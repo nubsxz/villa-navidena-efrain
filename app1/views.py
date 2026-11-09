@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Store, Product  
 from .forms import newstoreform, newproductform, newcontactform
-from email.message import EmailMessage
-import smtplib
-import os
+from django.core.mail import send_mail  # CORREGIDO: Usar el enviador oficial de Django
 
 def home(request):
     return render(request, "home.html") 
@@ -67,40 +65,28 @@ def contact(request):
         form = newcontactform(request.POST)
         if form.is_valid():
             try:
-                # CORREGIDO: Tu correo oficial de la Villa Navideña
-                remitente = "villanavidenafran@gmail.com"
-                
-                # CORREGIDO: Obtener el correo de forma segura mediante el formulario limpio de Django
                 destinatario = form.cleaned_data['email']
                 
-                # CORREGIDO: Contraseña de aplicación sin espacios para evitar bloqueos de Google
-                password_app = "dwcvqxkcsosoocna"  
+                # Asunto del correo
+                asunto = "Catálogo de Artículos - Villa Navideña Efrain 🎄"
 
-                # CORREGIDO: Mensaje personalizado con el espíritu de tu negocio navideño
-                mensaje = """🎄 ¡Hola! Gracias por contactar a Villa Navideña Efrain. 🎁
-              
-Aquí tienes la lista y precios de nuestros hermosos artículos de temporada disponibles:
----------------------------------------------------------------------------------
-"""
+                # Construcción del mensaje navideño limpio
+                mensaje = "🎄 ¡Hola! Gracias por contactar a Villa Navideña Efrain. 🎁\n\n"
+                mensaje += "Aquí tienes la lista y precios de nuestros hermosos artículos de temporada disponibles:\n"
+                mensaje += "---------------------------------------------------------------------------------\n"
                 for i in Product.objects.all():  
-                    mensaje = mensaje + f"✨ {str(i.name)} - ${str(i.price)}\n"
+                    mensaje += f"✨ {str(i.name)} - ${str(i.price)}\n"
+                mensaje += "---------------------------------------------------------------------------------\n"
+                mensaje += "¡Hacemos que la magia de las fiestas cobre vida en tu hogar! 🎄✨\n"
 
-                mensaje = mensaje + """---------------------------------------------------------------------------------
-¡Hacemos que la magia de las fiestas cobre vida en tu hogar! 🎄✨
-"""
-
-                email = EmailMessage()
-                email["From"] = remitente
-                email["To"] = destinatario
-                # CORREGIDO: Nombre del asunto personalizado
-                email["Subject"] = "Catálogo de Artículos - Villa Navideña Efrain 🎄"
-                email.set_content(mensaje)  
-
-                smtp = smtplib.SMTP("smtp.gmail.com", 587)
-                smtp.starttls()
-                smtp.login(remitente, password_app)
-                smtp.sendmail(remitente, destinatario, email.as_string())
-                smtp.quit()
+                # CORREGIDO: Enviar usando el método seguro y nativo de Django
+                send_mail(
+                    asunto,
+                    mensaje,
+                    None,  # Usa automáticamente el DEFAULT_FROM_EMAIL de settings.py
+                    [destinatario],
+                    fail_silently=False,
+                )
 
                 return redirect('home')
 
