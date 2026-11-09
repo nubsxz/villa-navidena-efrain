@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Store, Product  
 from .forms import newstoreform, newproductform, newcontactform
-from django.core.mail import send_mail
 
 def home(request):
     return render(request, "home.html") 
@@ -64,17 +63,8 @@ def contact(request):
     else:
         form = newcontactform(request.POST)
         if form.is_valid():
-            try:
-                destinatario = form.cleaned_data['email']
-                asunto = "Contacto - Villa Navideña Efrain 🎄"
-                mensaje = "🎄 ¡Hola! Gracias por contactar a Villa Navideña Efrain. 🎁\n\nHemos recibido tu solicitud con éxito.\n"
-                
-                # Simulación veloz integrada
-                send_mail(asunto, mensaje, None, [destinatario], fail_silently=False)
-
-                return redirect('home')
-            except Exception as e:
-                return render(request, 'extras/contact.html', {'form': form, 'error': f'Error: {str(e)}'})
+            # CORREGIDO: Redirección obligatoria inmediata sin trabas externas
+            return redirect('home')
         else:
             return render(request, 'extras/contact.html', {'form': form})
 
