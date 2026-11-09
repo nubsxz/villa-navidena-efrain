@@ -2,6 +2,7 @@ from django.urls import path
 # CORREGIDO: Dejamos el espacio obligatorio entre el punto y la palabra import
 from . import views
 
+
 urlpatterns = [
     path('info/', views.info, name='info'),
     path('', views.home, name='home'),
