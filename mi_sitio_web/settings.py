@@ -123,16 +123,18 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
-# Email
-# https://djangoproject.com
-
+# Email Configuración Unificada para Django 6+ (Evita conflictos en producción)
 MAILERS = {
     "default": {
-        "BACKEND": "django.core.mail.backends.console.EmailBackend",
+        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+        "OPTIONS": {
+            "host": "smtp.gmail.com",
+            "port": 587,
+            "use_tls": True,
+            "username": "villanavidenafran@gmail.com",
+            "password": "dwcvqxkcsosoocna",
+        },
     },
 }
-# Configuración global para envíos nativos SMTP en servidores de producción
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = '://gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = '"Villa Navideña Efrain" <villanavidenafran@gmail.com>'
